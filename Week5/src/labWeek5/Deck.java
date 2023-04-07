@@ -23,22 +23,16 @@ public class Deck {
 		List<String> tempAlpha = deckOfCards();
 		List<String> tempBeta = new ArrayList<String>();
 		List<String> tempDelta = new ArrayList<String>();
-		tempDelta.add(null);
 		Random randomNum = new Random();
 		do {
 			int randNum = randomNum.nextInt(52);
 			tempBeta.add(tempAlpha.get(randNum));
-			outerloop:
-			for(int i = 0; i < tempBeta.size(); i++) {
-				for(int j = 0; j < tempBeta.size(); j++) {
-					if (tempBeta.get(i) != tempDelta.get(j)) {
+			for(String beta : tempBeta) {
+					if (!tempDelta.contains(beta)) {
 						tempDelta.add(tempAlpha.get(randNum));
-						break outerloop;
-					}
 				}
 			}
 		} while(tempDelta.size() < 52);
-		tempDelta.remove(0);
 		return tempDelta;
 	}
 	public int randomNumber() {
